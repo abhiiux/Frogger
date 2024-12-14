@@ -8,34 +8,28 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float delayTime = 0f; // Cooldown time after Jump
     [SerializeField] float jumpHeight = 1.5f; // How high to Jump
 
-    Vector3 moveDirection;
+    Vector3 moveDirection = Vector3.forward ;
     bool isMoving = true;
     Vector3 Position;
     Rigidbody frog;
+    Animator animator;
 
     void Awake()
     {
         frog = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
-    public void ForwardJump(InputAction.CallbackContext phase)
+    public void Move(InputAction.CallbackContext context)
     {
-        if(isMoving)
+        moveDirection = context.ReadValue<Vector3>();
+        if(context.started && isMoving)
         {
-            if(phase.started)
-            {
-                moveDirection = Vector3.forward;
-                FrogJump();
-            }
+            transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+            FrogJump();
         }
-        // Position = transform.position;
         isMoving = false;
-        Invoke(nameof(Delay),delayTime);
-    }
-
-    public void Turn()
-    {
-        //turn when pressed!
+        Invoke(nameof(Delay),delayTime); // Cooldown time after Jump
     }
 
     private void Delay()
@@ -46,7 +40,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void FrogJump()
     {
-            frog.AddForce( Vector3.up * jumpHeight, ForceMode.Impulse);
-            frog.AddForce( moveDirection * moveSpeed);
+        animator.SetTrigger("Jump");
+        frog.AddForce( Vector3.up * jumpHeight, ForceMode.Impulse);
+        frog.AddForce( moveDirection * moveSpeed);
     }
 }
