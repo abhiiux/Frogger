@@ -19,6 +19,24 @@ public class PlayerMovement : MonoBehaviour
         frog = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
     }
+    
+    private void OnCollisionEnter(Collision col)
+    {
+        // Debug.Log(col.gameObject.name);
+        if(col.gameObject.CompareTag("Coin"))
+        {
+            // GameObject obj = col.gameObject;
+            Debug.Log("Obj with Coin detected");
+
+                if(col.gameObject.TryGetComponent<CoinCollection>(out CoinCollection coin))
+                {
+                    if( coin != null)
+                    {
+                        coin.Collect(); //Collects Coins
+                    }
+                }
+        }
+    }
 
     public void Move(InputAction.CallbackContext context)
     {
@@ -40,8 +58,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void FrogJump()
     {
-        animator.SetTrigger("Jump");
-        frog.AddForce( Vector3.up * jumpHeight, ForceMode.Impulse);
+        animator.SetTrigger("Jump"); //Jump animation
+        frog.AddForce( Vector3.up * jumpHeight, ForceMode.Impulse); // Jumping
         frog.AddForce( moveDirection * moveSpeed);
     }
 }
