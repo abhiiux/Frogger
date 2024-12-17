@@ -20,23 +20,6 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
     }
     
-    private void OnCollisionEnter(Collision col)
-    {
-        // Debug.Log(col.gameObject.name);
-        if(col.gameObject.CompareTag("Coin"))
-        {
-            // GameObject obj = col.gameObject;
-            Debug.Log("Obj with Coin detected");
-
-                if(col.gameObject.TryGetComponent<CoinCollection>(out CoinCollection coin))
-                {
-                    if( coin != null)
-                    {
-                        coin.Collect(); //Collects Coins
-                    }
-                }
-        }
-    }
 
     public void Move(InputAction.CallbackContext context)
     {
