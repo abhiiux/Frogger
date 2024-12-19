@@ -4,9 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 0f; //How much to move after Jump
-    [SerializeField] CameraMovement camScript;
     [SerializeField] float delayTime = 0f; // Cooldown time after Jump
-    [SerializeField] float jumpHeight = 1.5f; // How high to Jump
 
     Vector3 moveDirection = Vector3.forward ;
     bool isMoving = true;
@@ -24,10 +22,11 @@ public class PlayerMovement : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         moveDirection = context.ReadValue<Vector3>();
-        if(context.started && isMoving)
+        Debug.Log(moveDirection);
+        if(context.started && isMoving )
         {
             transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-            FrogJump();
+            FrogJump(); //Moves forward and plays animation
         }
         isMoving = false;
         Invoke(nameof(Delay),delayTime); // Cooldown time after Jump
@@ -36,13 +35,11 @@ public class PlayerMovement : MonoBehaviour
     private void Delay()
     {
         isMoving = true;
-        camScript.OnSight(); // Calculating distance b/w player and camera
     }
 
-    public void FrogJump()
+    public void FrogJump() 
     {
-        animator.SetTrigger("Jump"); //Jump animation
-        frog.AddForce( Vector3.up * jumpHeight, ForceMode.Impulse); // Jumping
+        animator.SetTrigger("Jump"); // Jump animation
         frog.AddForce( moveDirection * moveSpeed);
     }
 }
