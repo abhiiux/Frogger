@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class CarSpline : MonoBehaviour
 {
-    [SerializeField] Transform PointA;
-    [SerializeField] Transform PointB;
-    [SerializeField] Transform PointAB;
-    [SerializeField] float speed;
+    [SerializeField] Transform from ;
+    [SerializeField] Transform to ;
+    [SerializeField] Transform vehicle ;
+    [SerializeField] float speed ;
     
     float Value;
 
@@ -13,7 +13,7 @@ public class CarSpline : MonoBehaviour
   {
     Value = (Value + Time.deltaTime * speed) % 1f;
 
-    PointAB.position = Vector3.Lerp(PointA.position,PointB.position, Value);
+    vehicle.position = Vector3.Lerp(from.position,to.position, Value);
   }
 
 }
