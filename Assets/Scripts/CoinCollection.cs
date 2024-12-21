@@ -1,16 +1,28 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CoinCollection : MonoBehaviour
 {
+    [SerializeField] Text CoinText;
+    int score = 0;
+
+
     public void Collect()
     {
-        Debug.Log("Coin collected!");
+        score ++;
+        UpdateCoinContext();
 
-        Invoke(nameof(Collected),1f);
+        Destroy(this.gameObject);
     }
 
     private void Collected()
     {
         Destroy(this.gameObject);
     }
+
+    private void UpdateCoinContext()
+    {
+        CoinText.text = score.ToString() ;
+    }
+
 }

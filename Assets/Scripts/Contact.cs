@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Contact : MonoBehaviour
 {
@@ -13,10 +14,9 @@ public class Contact : MonoBehaviour
             if(objt.TryGetComponent<CoinCollection>(out CoinCollection coin))
             {
                 coin.Collect();
-            }  
 
+            }  
         }
-        
     } 
 
 }

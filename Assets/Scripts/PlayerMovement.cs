@@ -17,19 +17,17 @@ public class PlayerMovement : MonoBehaviour
         frog = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
     }
-    
+
 
     public void Move(InputAction.CallbackContext context)
     {
         moveDirection = context.ReadValue<Vector3>();
-        Debug.Log(moveDirection);
+
         if(context.started && isMoving )
         {
             transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
             FrogJump(); //Moves forward and plays animation
         }
-        isMoving = false;
-        Invoke(nameof(Delay),delayTime); // Cooldown time after Jump
     }
 
     private void Delay()
@@ -41,5 +39,8 @@ public class PlayerMovement : MonoBehaviour
     {
         animator.SetTrigger("Jump"); // Jump animation
         frog.AddForce( moveDirection * moveSpeed);
+
+        isMoving = false;
+        Invoke(nameof(Delay),delayTime); // Cooldown time after Jump
     }
 }
