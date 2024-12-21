@@ -6,14 +6,16 @@ public class CarSpline : MonoBehaviour
   [SerializeField] Transform endPoint ;
   [SerializeField] GameObject vehiclePrefab ;
   [SerializeField] float speed ;
+  [SerializeField] bool leftRotation;
 
-   GameObject vehicleInstance; 
+  GameObject vehicleInstance; 
   float lerpValue;
 
     void Start()
     {
-      // Instantiating vehicle Prefab
-      vehicleInstance = Instantiate( vehiclePrefab, startPoint.position, Quaternion.identity);
+      // Instantiating vehicle Prefab with rotation
+      CarRotation();
+
     }
 
     void Update()
@@ -23,6 +25,20 @@ public class CarSpline : MonoBehaviour
 
       vehicleInstance.transform.position =  Vector3.Lerp( startPoint.position, endPoint.position, lerpValue);
       
+    }
+
+    private void CarRotation()
+    {
+      if(leftRotation)
+      {
+        vehicleInstance = Instantiate( vehiclePrefab, startPoint.position, Quaternion.Euler(0, 180, 0));        
+
+      }
+        else
+        {
+          vehicleInstance = Instantiate( vehiclePrefab, startPoint.position, Quaternion.identity);
+
+        }
     }
 
 }
