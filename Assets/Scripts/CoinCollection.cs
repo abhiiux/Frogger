@@ -4,12 +4,12 @@ using UnityEngine.UI;
 public class CoinCollection : MonoBehaviour
 {
     [SerializeField] Text CoinText;
-    static int score = 0;
+    public static int CoinScore = 0;
 
 
     public void Collect()
     {
-        score ++;
+        CoinScore ++;
         UpdateCoinContext();
 
         Destroy(this.gameObject);
@@ -18,7 +18,7 @@ public class CoinCollection : MonoBehaviour
 
     private void UpdateCoinContext()
     {
-        CoinText.text = score.ToString();
+        CoinText.text = CoinScore.ToString();
     }
 
 }

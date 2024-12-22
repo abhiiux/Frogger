@@ -38,6 +38,7 @@ public class Contact : MonoBehaviour
             else if(other.CompareTag("Finish"))
             {
                 gameManager.Won();
+                Debug.Log("Collision with finish");
             }
     }
 
