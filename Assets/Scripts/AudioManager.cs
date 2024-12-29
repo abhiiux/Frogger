@@ -6,10 +6,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
 
     [Header("----------------Audio Clips----------------")]
-    [SerializeField] private AudioClip jumpClip;
-    [SerializeField] private AudioClip coinCollectionClip;
-    [SerializeField] private AudioClip carCrashClip;
-    [SerializeField] private AudioClip gameOverClip;
+    [SerializeField] internal AudioClip jumpClip;
+    [SerializeField] internal AudioClip coinCollectionClip;
+    [SerializeField] internal AudioClip carCrashClip;
+    [SerializeField] internal AudioClip gameOverClip;
 
     public void PlayAudio( AudioClip clip )
     {

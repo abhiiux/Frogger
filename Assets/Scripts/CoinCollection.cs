@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class CoinCollection : MonoBehaviour
 {
     [SerializeField] Text CoinText;
+    [SerializeField] AudioManager audioManager;
     public static int CoinScore = 0;
 
 
@@ -11,6 +12,7 @@ public class CoinCollection : MonoBehaviour
     {
         CoinScore ++;
         UpdateCoinContext();
+        audioManager.PlayAudio(audioManager.coinCollectionClip);
 
         Destroy(this.gameObject);
     }

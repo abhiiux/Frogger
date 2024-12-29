@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class Contact : MonoBehaviour
 {
     [SerializeField] GameManager gameManager;
+    [SerializeField] AudioManager audioManager;
     Animator animator;
     PlayerMovement playerMovement;
 
@@ -31,13 +32,15 @@ public class Contact : MonoBehaviour
         else if(other.CompareTag("Car"))
         {
             animator.SetTrigger("Car_collision");
-            playerMovement.moveSpeed = 0;
-
+            audioManager.PlayAudio(audioManager.carCrashClip);
+            playerMovement.didFrogCollide = true;
+            
             gameManager.Restart();
         }
             else if(other.CompareTag("Finish"))
             {
                 gameManager.Won();
+                audioManager.PlayAudio(audioManager.gameOverClip);
             }
     }
 

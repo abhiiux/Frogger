@@ -3,14 +3,17 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] internal float moveSpeed = 0f; //How much to move after Jump
+    [SerializeField] float moveSpeed = 0f; //How much to move after Jump
     [SerializeField] float delayTime = 0f; // Cooldown time after Jump
+    [SerializeField] AudioManager audioManager; // Reference to AudioManager script
 
-    Vector3 moveDirection = Vector3.forward ;
     bool isMoving = true;
+    internal bool didFrogCollide = false;
+    Vector3 moveDirection = Vector3.forward ;
     Vector3 Position;
     Rigidbody frog;
     Animator animator;
+
 
     void Awake()
     {
@@ -25,7 +28,6 @@ public class PlayerMovement : MonoBehaviour
 
         if(context.started && isMoving )
         {
-            transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
             FrogJump(); //Moves forward and plays animation
         }
     }
@@ -37,8 +39,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void FrogJump() 
     {
+        if( didFrogCollide ) return; // If frog collided with car, then return
+
+        transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up); // Rotate frog in the direction of movement
         animator.SetTrigger("Jump"); // Jump animation
         frog.AddForce( moveDirection * moveSpeed);
+        audioManager.PlayAudio(audioManager.jumpClip); // Jump sound
 
         isMoving = false;
         Invoke(nameof(Delay),delayTime); // Cooldown time after Jump
