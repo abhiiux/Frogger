@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] AudioManager audioManager; // Reference to AudioManager script
 
     bool isMoving = true;
-    internal bool didFrogCollide = false;
+    internal bool stopFrog = false;
     Vector3 moveDirection = Vector3.forward ;
     Vector3 Position;
     Rigidbody frog;
@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void FrogJump() 
     {
-        if( didFrogCollide ) return; // If frog collided with car, then return
+        if( stopFrog ) return; // If frog collided with car, then return
 
         transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up); // Rotate frog in the direction of movement
         animator.SetTrigger("Jump"); // Jump animation

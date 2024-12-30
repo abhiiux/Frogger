@@ -33,14 +33,13 @@ public class Contact : MonoBehaviour
         {
             animator.SetTrigger("Car_collision");
             audioManager.PlayAudio(audioManager.carCrashClip);
-            playerMovement.didFrogCollide = true;
+            playerMovement.stopFrog = true;
             
             gameManager.Restart();
         }
             else if(other.CompareTag("Finish"))
             {
                 gameManager.Won();
-                audioManager.PlayAudio(audioManager.gameOverClip);
             }
     }
 

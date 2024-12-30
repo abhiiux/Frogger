@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Frogger.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Frogger scene 2.unity
+    guid: 5b8370e35276b41e4841afe1efd2be08
+  - enabled: 1
+    path: Assets/Scenes/Frogger scene 3.unity
+    guid: 7232d9729a87e469abf15fa1d5cfa8fa
   m_configObjects: {}

@@ -6,12 +6,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject pauseIcon;
     [SerializeField] GameObject playIcon;
     [SerializeField] GameObject levelCompleteIcon;
+    [SerializeField] GameObject UiPanel;
+
+    [SerializeField] PlayerMovement playerMovement;
+
+
 
     public void Won()
     {
         int score = CoinCollection.CoinScore;
         if(score >= 3)
         {
+            playerMovement.stopFrog = true;
             levelCompleteIcon.SetActive(true);
         }
     }
@@ -24,6 +30,7 @@ public class GameManager : MonoBehaviour
     public void RestartScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1f;
     }
 
     public void Pause()
@@ -31,6 +38,8 @@ public class GameManager : MonoBehaviour
         pauseIcon.SetActive(false);
         playIcon.SetActive(true);
         Time.timeScale = 0f;
+
+        UiPanel.SetActive(true);
     }
 
     public void Play()
@@ -38,6 +47,13 @@ public class GameManager : MonoBehaviour
         pauseIcon.SetActive(true);
         playIcon.SetActive(false);
         Time.timeScale = 1f;
+
+        UiPanel.SetActive(false);
+    }
+
+    public void NextButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void Quit()

@@ -9,7 +9,6 @@ public class AudioManager : MonoBehaviour
     [SerializeField] internal AudioClip jumpClip;
     [SerializeField] internal AudioClip coinCollectionClip;
     [SerializeField] internal AudioClip carCrashClip;
-    [SerializeField] internal AudioClip gameOverClip;
 
     public void PlayAudio( AudioClip clip )
     {
