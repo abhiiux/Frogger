@@ -33,6 +33,11 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    public void BackToStart()
+    {
+        SceneManager.LoadScene(0); // 0 is the start scene
+    }
+
     public void Pause()
     {
         pauseIcon.SetActive(false);

@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Frogger scene 3.unity
     guid: 7232d9729a87e469abf15fa1d5cfa8fa
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 699e10a5f0e984e5cbe4427534e28380
   m_configObjects: {}

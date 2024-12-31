@@ -7,6 +7,12 @@ public class CoinCollection : MonoBehaviour
     [SerializeField] AudioManager audioManager;
     public static int CoinScore = 0;
 
+    void Start()
+    {
+        CoinScore = 0;
+        UpdateCoinContext();
+    }
+
 
     public void Collect()
     {
